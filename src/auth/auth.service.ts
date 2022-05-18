@@ -43,7 +43,7 @@ export class AuthService {
 
   async refresh(authDto: AuthDto) {
     const decode = await this.jwtService.decode(authDto.token);
-    const payload = { full_name: decode['full_name'], email: decode['email'] };
+    const payload = { full_name: decode['fullName'], email: decode['email'] };
 
     return {
       token: this.jwtService.sign(payload),
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   private async generateToken(user: User) {
-    const payload = { full_name: user.full_name, email: user.email };
+    const payload = { full_name: user.fullName, email: user.email };
     return {
       token: this.jwtService.sign(payload),
     };
